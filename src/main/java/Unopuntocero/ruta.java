@@ -31,5 +31,11 @@ public class ruta{
     public String toString(){
         return this.ruta+" "+this.estado;
     }
-    
+    public String situacion(){
+        if(this.estado==1){
+            return "OCUPADO";
+        }
+        else
+            return "LIBRE";
+    }
 }

@@ -26,6 +26,11 @@ public class avion{
     public void setEstado(int estado) {
         this.estado = estado;
     }
-    
+    public String situacion(){
+        if (this.estado==1)
+            return "VOLANDO";
+        else
+            return "LIBRE";
+    }
     
 }
