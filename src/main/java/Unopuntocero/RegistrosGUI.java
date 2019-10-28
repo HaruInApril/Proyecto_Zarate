@@ -5,6 +5,8 @@
  */
 package Unopuntocero;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 202515
@@ -16,6 +18,15 @@ public class RegistrosGUI extends javax.swing.JFrame {
      */
     public RegistrosGUI() {
         initComponents();
+        String nombreColumnas [] = {"Modelo", "Estado","Hora de Salida", "Hora de Llegada"};
+        String[][] datos= new String[VisualGUI.Aero.getRegistro().length][4];
+        for(int i=0;i<VisualGUI.Aero.getRegistro().length;i++){
+            datos[i][0]=VisualGUI.Aero.getRegistro()[i].getAvion();
+            datos[i][1]=VisualGUI.Aero.getRegistro()[i].getRuta();
+            datos[i][2]=VisualGUI.Aero.getRegistro()[i].getHoraSal();
+            datos[i][3]=VisualGUI.Aero.getRegistro()[i].getHoraLle();
+        }
+        jTable1.setModel(new DefaultTableModel(datos,nombreColumnas));
     }
 
     /**
@@ -28,6 +39,8 @@ public class RegistrosGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro de Vuelos");
@@ -39,12 +52,35 @@ public class RegistrosGUI extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Avion", "Ruta", "Hora de Salida", "Hora de Llegada"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(311, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18))
         );
@@ -54,14 +90,17 @@ public class RegistrosGUI extends javax.swing.JFrame {
                 .addContainerGap(252, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VisualGUI aceptar=new VisualGUI();
-        aceptar.setVisible(true);
+        VisualGUI.hola.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -110,5 +149,7 @@ public class RegistrosGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

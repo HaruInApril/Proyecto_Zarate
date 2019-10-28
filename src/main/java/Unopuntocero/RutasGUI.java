@@ -5,6 +5,8 @@
  */
 package Unopuntocero;
 
+import javax.swing.table.DefaultTableModel;
+
 
 public class RutasGUI extends javax.swing.JFrame {
 
@@ -13,6 +15,13 @@ public class RutasGUI extends javax.swing.JFrame {
      */
     public RutasGUI() {
         initComponents();
+        String nombreColumnas [] = {"Modelo", "Estado"};
+        String[][] datos= new String[10][2];
+        for(int i=0;i<10;i++){
+            datos[i][0]=VisualGUI.Aero.getRutas()[i].getRuta();
+            datos[i][1]=VisualGUI.Aero.getRutas()[i].situacion();
+        }
+        jTable1.setModel(new DefaultTableModel(datos,nombreColumnas));
     }
     
     /**
@@ -25,16 +34,8 @@ public class RutasGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Rutas de vuelo");
@@ -46,77 +47,46 @@ public class RutasGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Seul - Jeju");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Ruta", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
 
-        jLabel2.setText("Melbourne - Sidney");
-
-        jLabel3.setText("Bombay - Delhi");
-
-        jLabel4.setText("Fukuoka - Tokio");
-
-        jLabel5.setText("Rio de Janeiro-Sao Paulo");
-
-        jLabel6.setText("Los Angeles-San Francisco");
-
-        jLabel7.setText("Brisbane-Sidney");
-
-        jLabel8.setText("Ciudad del Cabo-Johannesburgo");
-
-        jLabel9.setText("Pekin-Shanghai");
-
-        jLabel10.setText("Sapporo-Tokio");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(38, 38, 38))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(125, 125, 125)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addContainerGap(88, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jButton1)
                 .addGap(36, 36, 36))
         );
@@ -125,8 +95,8 @@ public class RutasGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VisualGUI aceptar=new VisualGUI();
-        aceptar.setVisible(true);
+
+        VisualGUI.hola.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -136,34 +106,8 @@ public class RutasGUI extends javax.swing.JFrame {
         this.ruta=ruta;
         this.estado=estado;
     }
-    public void asiglab1(){
-        jLabel1.setText(ruta[0]);
-    }
-    public static void main(String args[]) {
-        String[] ruta=new String[9];
-        int[] estado=new int[9];
-        ruta[0]="Seul - Jeju";
-        estado[0]=0;
-        ruta[1]="Melbourne - Sidney";
-        estado[1]=0;
-        ruta[2]="Bombay - Delhi";
-        estado[2]=0;
-        ruta[3]="Fukuoka - Tokio";
-        estado[3]=0;
-        ruta[4]="Rio de Janeiro-Sao Paulo";
-        estado[4]=0;
-        ruta[5]="Sapporo-Tokio";
-        estado[5]=0;
-        ruta[6]="Los Angeles-San Francisco";
-        estado[6]=0;
-        ruta[7]="Brisbane-Sidney";
-        estado[7]=0;
-        ruta[8]="Ciudad del Cabo-Johannesburgo";
-        estado[8]=0;
-        ruta[9]="Pekin-Shanghai";
-        estado[9]=0;
-        RutasGUI o1=new RutasGUI();
-        o1.asiglab1();
+       public static void main(String args[]) {
+        
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -199,15 +143,7 @@ public class RutasGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

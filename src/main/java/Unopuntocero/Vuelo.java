@@ -1,19 +1,38 @@
 package Unopuntocero;
 
 import java.time.Instant;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Vuelo{
     private avion vehiculo;
     private ruta seguimiento;
-    private java.util.Date fecha;
+    private String fecha;
+    private int estado;
+
+    public Vuelo() {
+        this.estado=0;
+        this.vehiculo=null;
+        this.seguimiento=null;
+        this.fecha=null;
+        this.estado=0;
+    }
 
     public Vuelo(avion vehiculo, ruta seguimiento) {
         this.vehiculo = vehiculo;
         this.seguimiento = seguimiento;
         this.vehiculo.setEstado(1);
         this.seguimiento.setEstado(1);
-        fecha= new Date();
+        this.estado=1;
+        this.fecha= Calendar.HOUR+":"+Calendar.MINUTE+":"+Calendar.SECOND;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public avion getVehiculo() {
@@ -33,10 +52,11 @@ public class Vuelo{
     }
 
     public String getFecha() {
-        return fecha.getTime()+"";
+        return fecha;
     }
     
     public void liberar_vuelo(){
+        this.estado=0;
        this.vehiculo.setEstado(0);
        this.seguimiento.setEstado(0);
        this.vehiculo= null;
@@ -48,10 +68,13 @@ public class Vuelo{
         this.seguimiento = seguimiento;
         this.vehiculo.setEstado(1);
         this.seguimiento.setEstado(1);
-        fecha= new Date();
+        Calendar calendario = Calendar.getInstance();
+        fecha= calendario.get(Calendar.HOUR)+":"+calendario.get(Calendar.MINUTE)+":"+calendario.get(Calendar.SECOND);
+       this.estado=1;
     }
     public String toString(){
-        return this.getVehiculo()+","+this.seguimiento+","+this.getFecha()+","+Date.from(Instant.MIN).getTime();
+        Calendar ahora = Calendar.getInstance();
+        return this.getVehiculo().getModelo()+","+this.seguimiento.getRuta()+","+this.getFecha()+","+ahora.get(Calendar.HOUR)+":"+ahora.get(Calendar.MINUTE)+":"+ahora.get(Calendar.SECOND);
     }
     
     

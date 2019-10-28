@@ -10,12 +10,52 @@ package Unopuntocero;
  * @author 202515
  */
 public class VisualGUI extends javax.swing.JFrame {
-
+    private avion[] aviones= new avion[10];
+    private ruta[] rutas = new ruta[10];
+    private Vuelo[] vuelos= new Vuelo[10];
+    static public VisualGUI hola = new VisualGUI();
+    
+    static public Aeropuertos Aero;
     /**
      * Creates new form Visual
      */
     public VisualGUI() {
         initComponents();
+        rutas[0]= new ruta("Seul-Jeju",0);
+        rutas[1]= new ruta("Melbourne-Sidney",0);
+        rutas[2]= new ruta("Bombay-Delhi ",0);
+        rutas[3]= new ruta("Fukuoka-Tokio",0);
+        rutas[4]= new ruta("Rio de Janeiro-Sao Paulo",0);
+        rutas[5]= new ruta("Sapporo-Tokio",0);
+        rutas[6]= new ruta("Los Angeles-San Francisco",0);
+        rutas[7]= new ruta("Brisbane-Sidney",0);
+        rutas[8]= new ruta("Ciudad del Cabo-Johannesburgo",0);
+        rutas[9]= new ruta("Pekin-Shanghai",0);
+        
+        aviones[0]= new avion("Boeing 747",0);
+        aviones[1]= new avion("Boeing 777",0);
+        aviones[2]= new avion("Airbus A340",0);
+        aviones[3]= new avion("Boeing 767",0);
+        aviones[4]= new avion("Airbus A330",0);
+        aviones[5]= new avion("Boeing 757",0);
+        aviones[6]= new avion("Boeing 737",0);
+        aviones[7]= new avion("McDonnell Douglas MD-80",0);
+        aviones[8]= new avion("Embraer 170",0);
+        aviones[9]= new avion("Airbus A320",0);
+        
+        vuelos[0]= new Vuelo();
+        vuelos[1]= new Vuelo();
+        vuelos[2]= new Vuelo();
+        vuelos[3]= new Vuelo();
+        vuelos[4]= new Vuelo();
+        vuelos[5]= new Vuelo();
+        vuelos[6]= new Vuelo();
+        vuelos[7]= new Vuelo();
+        vuelos[8]= new Vuelo();
+        vuelos[9]= new Vuelo();
+        Aero = new Aeropuertos(aviones,rutas, vuelos);
+        
+        
     }
 
     /**
@@ -239,7 +279,7 @@ public class VisualGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisualGUI().setVisible(true);
+                hola.setVisible(true);
             }
         });
     }

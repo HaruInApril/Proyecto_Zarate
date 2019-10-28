@@ -5,6 +5,8 @@
  */
 package Unopuntocero;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 202515
@@ -16,6 +18,13 @@ public class AvionesGUI extends javax.swing.JFrame {
      */
     public AvionesGUI() {
         initComponents();
+        String nombreColumnas [] = {"Modelo", "Estado"};
+        String[][] datos= new String[10][2];
+        for(int i=0;i<10;i++){
+            datos[i][0]=VisualGUI.Aero.getAviones()[i].getModelo();
+            datos[i][1]=VisualGUI.Aero.getAviones()[i].situacion();
+        }
+        jTable1.setModel(new DefaultTableModel(datos,nombreColumnas));
     }
 
     /**
@@ -28,6 +37,8 @@ public class AvionesGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aviones");
@@ -39,12 +50,35 @@ public class AvionesGUI extends javax.swing.JFrame {
             }
         });
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Modelo", "Estado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(265, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(64, 64, 64))
         );
@@ -54,49 +88,25 @@ public class AvionesGUI extends javax.swing.JFrame {
                 .addContainerGap(205, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(72, 72, 72))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VisualGUI aceptar=new VisualGUI();
-        aceptar.setVisible(true);
+        VisualGUI.hola.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
     String[] modelo=new String[9];
     int[] estado=new int[9];
-    public AvionesGUI(String[] modelo,int[] estado){
-        this.modelo=modelo;
-        this.estado=estado;
-        
-    }
     
     
     public static void main(String args[]) {
-        String[] modelo=new String[9];
-        int[] estado=new int[9];
         
-        modelo[0]="Boeing 747";
-        estado[0]=0;
-        modelo[1]="Boeing 777";
-        estado[1]=0;
-        modelo[2]="Airbus A340";
-        estado[2]=0;
-        modelo[3]="Boeing 767";
-        estado[3]=0;
-        modelo[4]="Airbus A330";
-        estado[4]=0;
-        modelo[5]="Boeing 757";
-        estado[5]=0;
-        modelo[6]="Boeing 737";
-        estado[6]=0;
-        modelo[7]="McDonnell Douglas MD-80";
-        estado[7]=0;
-        modelo[8]="Embraer 170";
-        estado[8]=0;
-        modelo[9]="Airbus 320";
-        estado[9]=0;
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -131,5 +141,7 @@ public class AvionesGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
