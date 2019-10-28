@@ -5,6 +5,8 @@
  */
 package Unopuntocero;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 202515
@@ -18,7 +20,7 @@ public class LlegadasGUI extends javax.swing.JFrame {
         initComponents();
         for(int i=0;i<10;i++){
             if(VisualGUI.Aero.getVuelos()[i].getEstado()==1){
-                jComboBox1.addItem(VisualGUI.Aero.getVuelos()[i].getVehiculo().getModelo()+"/"+VisualGUI.Aero.getVuelos()[i].getSeguimiento().getRuta());
+                jComboBox1.addItem(VisualGUI.Aero.getVuelos()[i].identificador());
 
             }
         }
@@ -78,8 +80,14 @@ public class LlegadasGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int entrada= jComboBox1.getSelectedIndex();        // TODO add your handling code here:
-        VisualGUI.Aero.addRegistro(new Registros(VisualGUI.Aero.getVuelos()[entrada].toString()));
-        VisualGUI.Aero.getVuelos()[entrada].liberar_vuelo();
+        for (int i=0;i<10;i++){
+            if(VisualGUI.Aero.getVuelos()[i].identificador().equals(jComboBox1.getSelectedItem())){
+             VisualGUI.Aero.addRegistro(new Registros(VisualGUI.Aero.getVuelos()[i].toString()));
+            VisualGUI.Aero.getVuelos()[i].liberar_vuelo();   
+            }
+        
+        }
+        
         VisualGUI.hola.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

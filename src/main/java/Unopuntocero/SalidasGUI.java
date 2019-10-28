@@ -5,6 +5,8 @@
  */
 package Unopuntocero;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 202515
@@ -102,14 +104,30 @@ public class SalidasGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             // TODO add your handling code here:
-        int vuelo = jComboBox1.getSelectedIndex();
-        int ruta = jComboBox2.getSelectedIndex();
-        for(int i = 0;i<10;i++){
+        int avion = jComboBox1.getSelectedIndex();
+        int navion=0;
+        int ruta= jComboBox1.getSelectedIndex();
+        int nruta=0;
+                
+        for(int i=0;i<10;i++){
+             if(VisualGUI.Aero.getAviones()[i].getModelo().equals(jComboBox1.getSelectedItem())){
+                navion=i;
+           }
+        }
+        
+        for(int i=0;i<10;i++){
+           if(VisualGUI.Aero.getRutas()[i].getRuta().equals(jComboBox2.getSelectedItem()) ){
+                nruta=i;
+           }
+        }
+        
+        for(int i=0;i<10;i++){
             if(VisualGUI.Aero.getVuelos()[i].getEstado()==0){
-                VisualGUI.Aero.getVuelos()[i].agendar_vuelo(VisualGUI.Aero.getAviones()[vuelo], VisualGUI.Aero.getRutas()[ruta]);
-            break;
+                VisualGUI.Aero.getVuelos()[i].agendar_vuelo(VisualGUI.Aero.getAviones()[navion], VisualGUI.Aero.getRutas()[nruta]);
+                break;
             }
         }
+        
         VisualGUI.hola.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

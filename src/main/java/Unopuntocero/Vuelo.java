@@ -72,6 +72,13 @@ public class Vuelo{
         fecha= calendario.get(Calendar.HOUR)+":"+calendario.get(Calendar.MINUTE)+":"+calendario.get(Calendar.SECOND);
        this.estado=1;
     }
+    public String identificador(){
+        String help= "";
+        if(this.estado==1){
+        help = this.getVehiculo().getModelo()+"/"+this.getSeguimiento().getRuta();
+        }
+        return help;
+    }
     public String toString(){
         Calendar ahora = Calendar.getInstance();
         return this.getVehiculo().getModelo()+","+this.seguimiento.getRuta()+","+this.getFecha()+","+ahora.get(Calendar.HOUR)+":"+ahora.get(Calendar.MINUTE)+":"+ahora.get(Calendar.SECOND);
